@@ -1,0 +1,19 @@
+kind: pipeline
+type: docker
+name: dcgo
+
+
+workspace:
+  base: /go
+  path: src/github.com/drone-demos/drone-with-go
+
+pipeline:
+  test:
+    image: golang:alpine3.14
+    commands:
+      - go vet
+      - go test -v -cover
+  build:
+    image: golang:alpine3.14
+    commands:
+      - go build
